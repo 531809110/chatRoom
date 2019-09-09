@@ -14,9 +14,10 @@ io.on("connection", (socket) => {
    // console.log(clientCount);
    if(clientCount<=4){
    var nickname = names[clientCount-1];
+   }else{var nickname = "user: " + clientCount;}
    //新人进入，发送广播给所有客户端
    io.emit("enter", "欢迎" + nickname + "加入聊天室");
-}else{var nickname = "user: " + clientCount;}
+
    socket.on("message", (data) => {
       io.emit("list", nickname + " say: " + data);
    })
